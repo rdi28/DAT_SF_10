@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import datetime as dt
+import pdb
 from sklearn.cross_validation import KFold
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -42,11 +43,12 @@ def cleanData():
 
 def scoreModels(features, target, folds=10):
     "Calcs crovs-validation scores for multiple algorithms"
+    #pdb.set_trace()
     models = []
     models.append(RandomForestClassifier(random_state=0).fit)
     models.append(LogisticRegression(C=1.0).fit)
     models.append(KNeighborsClassifier(3).fit)
-    models.append(SVC(C=1.0))
+    models.append(SVC(C=1.0).fit)
     models.append(GaussianNB().fit)
 
     for alg in models:
@@ -59,6 +61,7 @@ def main():
     scoreModels(features, target)
 
 
+#instead of importing functions, run the main() function above
 if __name__ == '__main__':
     main()
 
